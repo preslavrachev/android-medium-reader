@@ -1,6 +1,19 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+
+ext {
+    libs = [
+            retrofit: [
+                    group: 'com.squareup.retrofit2',
+                    version: '2.1.0'
+            ]
+    ]
+}
+
+//ext.libs.retrofit_group = 'com.squareup.retrofit2'
+//ext.libs.retrofit_version = '2.1.0'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -27,6 +40,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* Retrofit */
+    compile "$libs.retrofit.group:retrofit:$libs.retrofit.version"
+    compile "$libs.retrofit.group:adapter-rxjava:$libs.retrofit.version"
+    compile "$libs.retrofit.group:converter-gson:$libs.retrofit.version"
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
